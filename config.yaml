@@ -7,13 +7,11 @@ params:
   homeInfoParams:
     Title: Hi there 👋
     Content: |
-      - My name is Junjie YANG(杨骏杰), and I'm senior student in 
+      - I am Junjie YANG(杨骏杰), a senior student in 
       [College of Geo-Exploration Science and Technology](http://gest.jlu.edu.cn/en/index.htm)
       at [Jilin University](https://www.jlu.edu.cn/), majoring in Geographic Information Science.
       - I'm going to study in [Peking University](https://english.pku.edu.cn/) for a Ph.D. degree next year.
       - Currently my research interest lies in spatio-temporal big data computing and mining.
-
-
 
 
   socialIcons:
