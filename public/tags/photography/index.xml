@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>photography on Junjie YANG&#39;s Homepage</title>
+    <link>/tags/photography/</link>
+    <description>Recent content in photography on Junjie YANG&#39;s Homepage</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Nov 2023 20:55:20 +0800</lastBuildDate><atom:link href="/tags/photography/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My First Post</title>
+      <link>/posts/my-first-post/</link>
+      <pubDate>Thu, 02 Nov 2023 20:55:20 +0800</pubDate>
+      
+      <guid>/posts/my-first-post/</guid>
+      <description>This photograph was shot on Oct. 5, 2023 at Luogang Central Park, Hefei.
+The park was just completed and open to the public then.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,57 @@
+baseURL: ""
+languageCode: en-us
+title: Junjie YANG's Homepage
+theme: PaperMod
+
+params:
+  homeInfoParams:
+    Title: Hi there 👋
+    Content: |
+      - My name is Junjie YANG(杨骏杰), and I'm senior student in 
+      [College of Geo-Exploration Science and Technology](http://gest.jlu.edu.cn/en/index.htm)
+      at [Jilin University](https://www.jlu.edu.cn/), majoring in Geographic Information Science.
+      - I'm going to study in [Peking University](https://english.pku.edu.cn/) for a Ph.D. degree next year.
+      - Currently my research interest lies in spatio-temporal big data computing and mining.
+
+
+
+
+  socialIcons:
+    - name: email
+      url: "mailto:yangjj2320@mails.jlu.edu.cn"
+    # - name: weibo
+    #   url: "https://www.weibo.com/"
+    - name: github
+      url: "https://github.com/JunjieYang-GISer"
+
+  cover:
+    linkFullImages: true
+
+  ShowBreadCrumbs: true
+
+  ShowReadingTime: true
+
+  ShowShareButtons: false
+
+  ShowPostNavLinks: true
+
+
+
+menu:
+  main:
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 10
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+    - identifier: archives
+      name: Archives
+      url: /archives/
+      weight: 30
+  
+categories: ["blog", "photography"]
+tags: ["blog", "photography"]
+
