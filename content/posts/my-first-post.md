@@ -3,7 +3,7 @@ title: 'My First Post'
 date: 2023-11-02T20:55:20+08:00
 draft: false
 cover:
-    image: img/Hefei Luogang Park Oct. 2023.jpg
+    image: img/Hefei Luogang Park Oct. 2023 - compressed.jpg
     alt: 'This is a post-image (alt)'
     caption: 'The fabulous lawn in Luogang Central Park, Hefei'
 tags: ["blog", "photography"]
