@@ -2,30 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/tags/blog/</loc>
+    <loc>http://junjieyang.site/tags/blog/</loc>
     <lastmod>2023-11-02T20:55:20+08:00</lastmod>
   </url><url>
-    <loc>/categories/blog/</loc>
+    <loc>http://junjieyang.site/categories/blog/</loc>
     <lastmod>2023-11-02T20:55:20+08:00</lastmod>
   </url><url>
-    <loc>/categories/</loc>
+    <loc>http://junjieyang.site/categories/</loc>
     <lastmod>2023-11-02T20:55:20+08:00</lastmod>
   </url><url>
-    <loc>/</loc>
+    <loc>http://junjieyang.site/</loc>
     <lastmod>2023-11-02T20:55:20+08:00</lastmod>
   </url><url>
-    <loc>/posts/my-first-post/</loc>
+    <loc>http://junjieyang.site/posts/my-first-post/</loc>
     <lastmod>2023-11-02T20:55:20+08:00</lastmod>
   </url><url>
-    <loc>/tags/photography/</loc>
+    <loc>http://junjieyang.site/tags/photography/</loc>
     <lastmod>2023-11-02T20:55:20+08:00</lastmod>
   </url><url>
-    <loc>/posts/</loc>
+    <loc>http://junjieyang.site/posts/</loc>
     <lastmod>2023-11-02T20:55:20+08:00</lastmod>
   </url><url>
-    <loc>/tags/</loc>
+    <loc>http://junjieyang.site/tags/</loc>
     <lastmod>2023-11-02T20:55:20+08:00</lastmod>
   </url><url>
-    <loc>/archives/</loc>
+    <loc>http://junjieyang.site/archives/</loc>
   </url>
 </urlset>
