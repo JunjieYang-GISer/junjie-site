@@ -50,6 +50,6 @@ menu:
       url: /archives/
       weight: 30
   
-categories: ["blog", "photography"]
-tags: ["blog", "photography"]
+categories: ["blog", "photography", "project"]
+tags: ["blog", "photography", "project"]
 

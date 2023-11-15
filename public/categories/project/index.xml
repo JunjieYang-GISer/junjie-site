@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Junjie YANG&#39;s Homepage</title>
-    <link>https://junjieyang.site/</link>
-    <description>Recent content on Junjie YANG&#39;s Homepage</description>
+    <title>project on Junjie YANG&#39;s Homepage</title>
+    <link>https://junjieyang.site/categories/project/</link>
+    <description>Recent content in project on Junjie YANG&#39;s Homepage</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Nov 2023 12:00:20 +0800</lastBuildDate><atom:link href="https://junjieyang.site/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Nov 2023 12:00:20 +0800</lastBuildDate><atom:link href="https://junjieyang.site/categories/project/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dynamic Identification Method and Application of Oil Tanks in Ports Around the Bohai Sea Based on Deep Learning | 基于深度学习的环渤海港口储油罐动态识别方法与应用</title>
       <link>https://junjieyang.site/posts/my-first-project/</link>
@@ -20,17 +20,6 @@ Currently, this post is mainly written in Chinese.
 系统可通过二维平面和三维场景两种方式展示油罐信息。在三维场景中，储油罐要素将被渲染成三维的圆柱体，视觉效果较好。总体而言，系统自动化程度高，油罐识别精度高（96.97%），地理数据与属性信息展示效果较好。
 1 基于GDAL的滑动窗口切片算法 储油罐在卫星遥感影像视场中所占比例较小，给目标检测带来较大难度，通过滑动窗口切片的方法提高储油罐在单幅影像中所占比例。大图幅遥感影像需要按照滑动窗口的位置被裁剪为诸多小图幅遥感影像，相邻窗口之间有一定的重叠比率，以确保目标地物至少能够完整出现在一个窗口中。</description>
     </item>
-    
-    <item>
-      <title>My First Post</title>
-      <link>https://junjieyang.site/posts/my-first-post/</link>
-      <pubDate>Thu, 02 Nov 2023 20:55:20 +0800</pubDate>
-      
-      <guid>https://junjieyang.site/posts/my-first-post/</guid>
-      <description>This photograph was shot on Oct. 5, 2023 at Luogang Central Park, Hefei.
-The park was just completed and open to the public then.</description>
-    </item>
-    
     
   </channel>
 </rss>
