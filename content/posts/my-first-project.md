@@ -10,6 +10,7 @@ cover:
 tags: ["project"]
 categories: ["project"]
 showtoc: true
+math: true
 ---
 > As the group leader, I conducted the Innovation Training Program for College Students in Jilin University, which is ***Dynamic Identification Method and Application of Oil Tanks in Ports Around the Bohai Sea Based on Deep Learning***. The project got a **Provincial Excellent Conclusion** in May 2023. Here is the detailed description of this project.
 >
@@ -35,17 +36,27 @@ showtoc: true
 
 !["alt"](/img/my-first-project/proj1-img5-compressed.jpg "图 5 滑动窗口切片原理图（岙山国家战略石油储备基地）")
 
-如图 5，滑动窗口将逐行从左至右滑动，红色部分为重叠区域，其在窗口中的占比即为overlay。每个窗口对应的遥感影像区域将被单独裁剪，输出为小窗口切片图像，其命名规则遵循：*ImageName-row_column_height_width.tif*。例如：*Aoshan-2120_3180_1248_1248.tif*。
+如图 5，滑动窗口将逐行从左至右滑动，红色部分为重叠区域，其在窗口中的占比即为overlay。每个窗口对应的遥感影像区域将被单独裁剪，输出为小窗口切片图像，其命名规则遵循：
+$$
+ImageName-row\underline{~}column\underline{~}height\underline{~}width.tif
+$$
+例如：
+$$Aoshan-2120\underline{~}3180\underline{~}1248\underline{~}1248.tif
+$$
 
-为了使得裁切出的窗口影像是具有空间参考的GeoTiff文件，方便后续将目标检测结果的图片坐标转为地理坐标，我们采用GDAL库（地理空间数据抽象库，即Geospatial Data Abstraction Library）实现滑动窗口切片算法。该算法涉及两个关键参数：（1）*window_width*：即窗口的宽和高；（2）*overlay*：即相邻窗口间重叠比率，其默认值为0.15。若要保证目标地物至少在一个窗口中完整出现，需满足不等式：
+为了使得裁切出的窗口影像是具有空间参考的GeoTiff文件，方便后续将目标检测结果的图片坐标转为地理坐标，我们采用GDAL库（地理空间数据抽象库，即Geospatial Data Abstraction Library）实现滑动窗口切片算法。该算法涉及两个关键参数：（1）$windowWidth$：即窗口的宽和高；（2）$overlay$：即相邻窗口间重叠比率，其默认值为0.15。若要保证目标地物至少在一个窗口中完整出现，需满足不等式：
 
-> ***window_width×overlay≥object_width_max/resolution***。
+$$
+windowWidth \times overlay≥\frac{objectWidth_{max}}{resolution}
+$$
 
-其中，*object_width_max*为目标地物宽度的最大值，*resolution*为遥感影像分辨率。在给定*overlay*=0.15，*object_width_max*=*90m，resolution*=0.5m的情况下，应当满足：
+其中，$objectWidth_{max}$为目标地物宽度的最大值，$resolution$为遥感影像分辨率。在给定$overlay$=0.15，$objectWidth_{max}=90m$，$resolution=0.5m$的情况下，应当满足：
 
-> ***window_width>1200***
+$$
+window_width>1200
+$$
 
-考虑到YOLOv5的特征图（Feature map）尺寸为416×416，将*window_width*设置为416的整数倍1248。
+考虑到YOLOv5的特征图（Feature map）尺寸为416×416，将$windowWidth$设置为416的整数倍1248。
 
 ## 2 YOLOv5目标检测算法
 
@@ -63,36 +74,42 @@ showtoc: true
 
 对于单幅遥感影像，获取太阳与卫星的方位角与高度角，计算储油罐阴影长度，即可根据相关空间关系计算出油罐高度。首先需要将原始图像从RGB色彩空间转换至HSV空间（图 7左上图），此后根据下述公式计算比值图像（图 7中上图）：
 
-> ***I_ij=(H_ij+1)/(V_ij+1)***
+$$
+I_{ij}=\frac{H_{ij}+1}{V_{ij}+1}
+$$
 
-其中，*H_ij*和*V_ij*分别为像元(i,j)的色调和亮度通道的分量。随后进行OTSU阈值分割，得到如图 7右上图所示的二值图像。最后，通过面积筛选优化（阈值分别为200,500,2500；或形态学开运算）得到如图 7下部三张图所示的结果。
+其中，$H_{ij}$和$V_{ij}$分别为像元$(i,j)$的色调和亮度通道的分量。随后进行OTSU阈值分割，得到如图 7右上图所示的二值图像。最后，通过面积筛选优化（阈值分别为200,500,2500；或形态学开运算）得到如图 7下部三张图所示的结果。
 
 !["alt"](/img/my-first-project/proj1-img7.png "图 7 提取油罐高度图像处理过程")
 
 根据亚像素细分定位思想提取阴影中与太阳光线平行的线段，根据下列公式计算线段长度S:
 
-> ***S(p,q)=[(s-x)^2+(t-y)^2 ]^(1/2)×k***
+$$
+S(p,q) = \sqrt{(s-x)^{2}  + (t-y)^{2}} \times k
+$$
 
-其中，*(s,t)*和*(x,y)*分别是线段两个端点*p*和*q*的坐标，*k*为遥感影像空间分辨率，*S*是储油罐的阴影长度。
+其中，$(s,t)$和$(x,y)$分别是线段两个端点$p$和$q$的坐标，$k$为遥感影像空间分辨率，$S$是储油罐的阴影长度。
 
 根据卫星成像方位角和高度角的不同，以及太阳角度的不同，可根据阴影长度计算出储油罐的高度。有3种可能的情况：1）卫星方位角与太阳方位角的差值大于180°；2）卫星方位角等于太阳方位角；3）卫星方位角与太阳方位角的差值小于180°。第1种情况下，卫星可拍摄到完整的油罐阴影。以此种情况为例，列出油罐高度计算公式：
 
-> ***h=S×tanα***
+$$
+h = S \times \tan \alpha
+$$
 
-其中，*α*为太阳高度角，*S*是上一步提取的油罐阴影长度，*h*是储油罐高度。其他情况的具体数学公式可以此类推。
+其中，$α$为太阳高度角，$S$是上一步提取的油罐阴影长度，$h$是储油罐高度。其他情况的具体数学公式可以此类推。
 
 ## 5 霍夫变换圆检测
 
-调用Python OpenCV库的cv2.HoughCircles()函数，进行霍夫变换圆检测。该函数的定义如下：
+调用Python OpenCV库的`cv2.HoughCircles()`函数，进行霍夫变换圆检测。该函数的定义如下：
 
 ```Python
 HoughCircles(image, method, dp, minDist, circles=None, param1=None, param2=None, minRadius=None,
     maxRadius=None)
 ```
 
-其中，image为图像；method为方法，目前仅可选择霍夫梯度法，即cv2.HOUGH_GRADIENT；dp默认选择1；minDist为圆之间的最小距离，若过小则可能导致误检；param1为Canny检测器的较高阈值，较低阈值为其值的1/2，默认设置为100；param2为检测阶段圆心的累加器阈值，过小会检测出本不存在的圆，越大则检测到的圆就越接近完美的圆形，但过大时可能会检测不出圆形造成漏检。
+其中，`image`为图像；`method`为方法，目前仅可选择霍夫梯度法，即`cv2.HOUGH_GRADIENT`；`dp`默认选择1；`minDist`为圆之间的最小距离，若过小则可能导致误检；`param1`为Canny检测器的较高阈值，较低阈值为其值的1/2，默认设置为100；`param2`为检测阶段圆心的累加器阈值，过小会检测出本不存在的圆，越大则检测到的圆就越接近完美的圆形，但过大时可能会检测不出圆形造成漏检。
 
-参考OpenCV文档，当关键参数param2参数较小导致返回多个圆形时，圆形将按照累加值降序排列，即可信度最高的圆将排在首位。基于此特点，及系统输入给霍夫圆检测函数的图像应为经过NMS去冗余后的储油罐目标检测结果，图片尺寸较小，储油罐的圆形特征突出，故本文将param2设置得尽量小，并只取函数返回的第一个圆形作为结果，以尽可能提高储油罐顶圆形的检出率和识别准确性。系统调用函数的具体参数如下：
+参考OpenCV文档，当关键参数`param2`参数较小导致返回多个圆形时，圆形将按照累加值降序排列，即可信度最高的圆将排在首位。基于此特点，及系统输入给霍夫圆检测函数的图像应为经过NMS去冗余后的储油罐目标检测结果，图片尺寸较小，储油罐的圆形特征突出，故本文将`param2`设置得尽量小，并只取函数返回的第一个圆形作为结果，以尽可能提高储油罐顶圆形的检出率和识别准确性。系统调用函数的具体参数如下：
 
 ```Python
 circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, dp=1, minDist=30, param1=100, param2=30,
@@ -111,7 +128,7 @@ circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, dp=1, minDist=30, param1=10
 
 通过学习ArcGIS Server、SQL Server与企业级地理数据库相关知识，实现了通过SQL语句在地理数据库中插入要素以达到更新服务目的的算法。
 
-SQL Server提供了一种平面坐标系下的空间数据类型，即geometry。该类型的字段以二进制的形式存储地理空间中的几何图形信息，并可通过开放地理空间信息联盟（OGC）的熟知文本（WKT）形式写入和输出。对于识别出的储油罐，我们将其ID、半径、面积、高度、体积、空间信息以及所属港口信息整合为SQL语句，样例如下：
+SQL Server提供了一种平面坐标系下的空间数据类型，即`geometry`。该类型的字段以二进制的形式存储地理空间中的几何图形信息，并可通过开放地理空间信息联盟（OGC）的熟知文本（WKT）形式写入和输出。对于识别出的储油罐，我们将其ID、半径、面积、高度、体积、空间信息以及所属港口信息整合为SQL语句，样例如下：
 
 ```SQL
 INSERT INTO AUTOUPDATETEST VALUES(401, 35.498910, 3958.949018, 23.443860, 92813.046525, 
@@ -119,4 +136,4 @@ INSERT INTO AUTOUPDATETEST VALUES(401, 35.498910, 3958.949018, 23.443860, 92813.
     ‘CN DLC’, DALIAN)
 ```
 
-表示油罐图斑地理信息的WKT由霍夫变换所得的圆心坐标与半径计算得来，每 *(360/n)°* 取一个圆周上的点，计算出坐标 *(x_i,y_i )* ，将各点坐标按照标准格式依次相连，最后加上第一个点的坐标以使多边形闭合，即可表达一个近似圆的n边形。在本系统中n取36。
+表示油罐图斑地理信息的WKT由霍夫变换所得的圆心坐标与半径计算得来，每 $\frac {360}{n} ^{\circ}$ 取一个圆周上的点，计算出坐标$(x_i,y_i )$，将各点坐标按照标准格式依次相连，最后加上第一个点的坐标以使多边形闭合，即可表达一个近似圆的n边形。在本系统中n取36。
