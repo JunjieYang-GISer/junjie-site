@@ -9,6 +9,7 @@ cover:
 
 tags: ["project"]
 categories: ["project"]
+showtoc: true
 ---
 > As the group leader, I conducted the Innovation Training Program for College Students in Jilin University, which is ***Dynamic Identification Method and Application of Oil Tanks in Ports Around the Bohai Sea Based on Deep Learning***. The project got a **Provincial Excellent Conclusion** in May 2023. Here is the detailed description of this project.
 >
