@@ -53,7 +53,7 @@ $$
 其中，$objectWidth_{max}$为目标地物宽度的最大值，$resolution$为遥感影像分辨率。在给定$overlay$=0.15，$objectWidth_{max}=90m$，$resolution=0.5m$的情况下，应当满足：
 
 $$
-windowWidth>1200
+windowWidth \ge 1200
 $$
 
 考虑到YOLOv5的特征图（Feature map）尺寸为416×416，将$windowWidth$设置为416的整数倍1248。
