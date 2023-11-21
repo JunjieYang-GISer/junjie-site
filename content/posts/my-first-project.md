@@ -47,13 +47,13 @@ $$
 为了使得裁切出的窗口影像是具有空间参考的GeoTiff文件，方便后续将目标检测结果的图片坐标转为地理坐标，我们采用GDAL库（地理空间数据抽象库，即Geospatial Data Abstraction Library）实现滑动窗口切片算法。该算法涉及两个关键参数：（1）$windowWidth$：即窗口的宽和高；（2）$overlay$：即相邻窗口间重叠比率，其默认值为0.15。若要保证目标地物至少在一个窗口中完整出现，需满足不等式：
 
 $$
-windowWidth \times overlay≥\frac{objectWidth_{max}}{resolution}
+windowWidth \times overlay \ge \frac{objectWidth_{max}}{resolution}
 $$
 
 其中，$objectWidth_{max}$为目标地物宽度的最大值，$resolution$为遥感影像分辨率。在给定$overlay$=0.15，$objectWidth_{max}=90m$，$resolution=0.5m$的情况下，应当满足：
 
 $$
-window_width>1200
+windowWidth>1200
 $$
 
 考虑到YOLOv5的特征图（Feature map）尺寸为416×416，将$windowWidth$设置为416的整数倍1248。
